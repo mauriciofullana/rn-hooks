@@ -1,10 +1,23 @@
-import React, { FunctionComponent } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { FunctionComponent, useState } from "react";
+import { View, Text, StyleSheet, Button } from "react-native";
 
 const UseStateScreen: FunctionComponent = () => {
+  const [counter, setCounter] = useState<number>(0);
   return (
     <View style={styles.container}>
-      <Text>UseState</Text>
+      <Button
+        title="Increment"
+        onPress={() => {
+          setCounter(counter + 1);
+        }}
+      />
+      <Button
+        title="Decrease"
+        onPress={() => {
+          setCounter(counter - 1);
+        }}
+      />
+      <Text>{counter}</Text>
     </View>
   );
 };
