@@ -6,15 +6,37 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type Props = NativeStackScreenProps<StackParamList, "Home">;
 
+const HOOKS = [
+  "useState",
+  "useReducer",
+  "useEffect",
+  "useRef",
+  "useLayoutEffect",
+  "useImperativeHandle",
+  "useContext",
+  "useMemo",
+  "useCallback",
+];
+
+type Hook = typeof HOOKS[number];
+
+const renderButton = (hook: string, navigation: any) => {
+  return (
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() =>
+        navigation.navigate(hook.charAt(0).toUpperCase().concat(hook.slice(1)))
+      }
+    >
+      <Text style={styles.buttonText}>{hook}</Text>
+    </TouchableOpacity>
+  );
+};
+
 const Home: FunctionComponent<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("UseState")}
-      >
-        <Text style={styles.buttonText}>useState</Text>
-      </TouchableOpacity>
+      {HOOKS.map((hook) => renderButton(hook, navigation))}
     </View>
   );
 };
@@ -25,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    marginTop: 50,
     paddingHorizontal: 25,
   },
   button: {

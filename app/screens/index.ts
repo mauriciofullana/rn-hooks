@@ -1,2 +1,10 @@
 export { default as Home } from "./Home";
 export { default as UseState } from "./UseState";
+export { default as UseReducer } from "./UseReducer";
+export { default as UseCallback } from "./UseCallback";
+export { default as UseContext } from "./UseContext";
+export { default as UseEffect } from "./UseEffect";
+export { default as UseImperativeHandle } from "./UseImperativeHandle";
+export { default as UseLayoutEffect } from "./UseLayoutEffect";
+export { default as UseMemo } from "./UseMemo";
+export { default as UseRef } from "./UseRef";
