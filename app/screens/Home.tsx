@@ -24,6 +24,7 @@ const renderButton = (hook: string, navigation: any) => {
   return (
     <TouchableOpacity
       style={styles.button}
+      key={hook}
       onPress={() =>
         navigation.navigate(hook.charAt(0).toUpperCase().concat(hook.slice(1)))
       }
