@@ -4,13 +4,19 @@ import { View, Text, StyleSheet, Button } from "react-native";
 
 const UseEffectScreen: FunctionComponent = () => {
   const [dependecy, setDependecy] = useState<boolean>(false);
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos/1")
-      .then((res) => console.log(res.data));
-    return () => {
-      console.log("clean up");
-    };
+    setLoading(true);
+    setTimeout(() => {
+      axios
+        .get("https://jsonplaceholder.typicode.com/todos/1")
+        .then((res) => {
+          console.log(res.data);
+          setData(res.data);
+        })
+        .finally(() => setLoading(false));
+    }, 2000);
   }, [dependecy]);
 
   const handleState = () => {
@@ -19,8 +25,9 @@ const UseEffectScreen: FunctionComponent = () => {
 
   return (
     <View style={styles.container}>
-      <Text>useEffect</Text>
-      <Button title="Change state" onPress={handleState} />
+      {loading && <Text>Loading...</Text>}
+      {data && !loading && <Text>{data.title}</Text>}
+      <Button title="Change dependency status" onPress={handleState} />
     </View>
   );
 };
